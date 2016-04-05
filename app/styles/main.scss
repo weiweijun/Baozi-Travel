@@ -1,0 +1,17 @@
+// bower:scss
+// endbower
+// Component styles are injected through gulp
+// injector
+@import "elements/avatar";
+@import "elements/card";
+@import "elements/content";
+@import "elements/header";
+@import "elements/maps";
+@import "elements/nav";
+@import "elements/sidenav";
+@import "elements/weather";
+@import "palette/_palette";
+// endinjector
+html, body {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+}

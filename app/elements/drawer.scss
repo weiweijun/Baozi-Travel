@@ -1,0 +1,21 @@
+.bao-drawer {
+  border:none;
+  .mdl-menu__container {
+    z-index: -1;
+  }
+  .bao-navigation {
+    z-index: -2;
+  }
+  .mdl-menu .mdl-menu__item {
+    display: flex;
+    align-items: center;
+  }
+}
+.bao-drawer-header {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px;
+  height: 150px;
+}

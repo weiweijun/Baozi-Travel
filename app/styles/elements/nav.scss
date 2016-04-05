@@ -1,0 +1,28 @@
+.bao-navigation{
+  flex-grow: 1;
+}
+.bao-layout .bao-navigation .mdl-navigation__link{
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.56);
+  font-weight: 500;
+}
+.bao-layout .bao-navigation .mdl-navigation__link:hover{
+  background-color: #00BCD4;
+  color: #37474F;
+}
+.bao-navigation .mdl-navigation__link .material-icons{
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-right: 32px;
+}
+.bao-sidenav{
+  height: 100%;
+  md-sidenav {
+    height: 100%;
+  }
+}
+.bao-boxshadow{
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}

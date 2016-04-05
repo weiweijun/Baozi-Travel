@@ -1,0 +1,54 @@
+.bao-cards{
+  align-items:flex-start;
+  align-content:flex-start;
+  .bao-seperator {
+    height: 30px;
+  }
+  .mdl-card__title.mdl-card__title{
+    color: white;
+    font-size: 25px;
+    font-weight: 400;
+  }
+  ul {
+    padding: 0;
+  }
+  h3 {
+    font-size: 1em;
+  }
+  .mdl-card__action a {
+    color: #00BCD4;
+    text-decoration: none;
+  }
+}
+// News update section
+.bao-updates .mdl-card__title {
+  min-height: 200px;
+  background-image: url('../images/dog.png');
+  background-position: 90% 100%;
+  background-repeat: no-repeat;
+ }
+// Maps display option
+.bao-options {
+  h3{
+    margin:0;
+  }
+  .mdl-checkbox__box-outline{
+    border-color: rgba(255,255,255,0.9);
+  }
+  ul{
+    margin: 0;
+    list-style-type: none;
+  }
+  li{
+    margin: 5px 0;
+  }
+  .material-icons {
+    color: rgba(255,255,255,0.9);
+  }
+  .mdl-card__action{
+    height: 65px;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+  }
+}
