@@ -16,13 +16,14 @@ angular
     'ngSanitize',
     'ngRoute',
     'ngMaterial',
-    'ngMessages'
+    'ngMessages',
+    "weatherModule"
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+        templateUrl: 'scripts/weather/weather.html',
+        controller: 'WeatherCtrl',
+        controllerAs: 'weather'
       });
   });
