@@ -1,0 +1,11 @@
+<div layout="row" style="border-top:1px solid #eee">
+  <div layout="column" layout-padding="" ng-repeat="weather in forecast.list | limitTo:5">
+      <h6 ng-bind-html="(findIndex(weather)+1)|daysInTheFuture"></h6>
+      <weather-display
+              weather="weather"
+              custom-size="30"
+              use-google-images="useGoogleImages"
+              units="units">
+      </weather-display>
+  </div>
+</div>

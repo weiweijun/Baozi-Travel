@@ -8,7 +8,7 @@
  * Controller of the baoziApp
  */
 angular.module('baoziApp')
-  .controller('MainCtrl', function () {
+  .controller('WeatherCtrl', function () {
 
   });
 

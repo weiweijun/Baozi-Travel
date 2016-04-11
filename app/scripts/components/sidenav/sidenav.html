@@ -1,16 +1,13 @@
 <div ng-controller="SidenavController" ng-cloak="" layout="column" class="bao-sidenav" >
 
 
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2 mdl-color--blue-grey-800" md-theme="sidenav" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2 mdl-color--blue-grey-800" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
 
       <md-toolbar class="bao-sidenav-header mdl-color--blue-grey-900">
         <img src="images/user.jpg" class="bao-avatar">
         <h1 class="md-toolbar-tools"></h1>
       </md-toolbar>
       <md-content layout-padding="" class="mdl-color--blue-grey-800">
-        <md-button ng-click="close()" class="md-primary" hide-gt-md="">
-          Close Sidenav Left
-        </md-button>
         <p hide-md="" show-gt-md="" style="color: #ffffff;">
           This sidenav is locked open on your device. To go back to the default behavior,
           narrow your display.
