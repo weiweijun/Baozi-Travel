@@ -14,8 +14,6 @@
     "angular-socket-io": "~0.7.0",
     "angular-validation-match": "~1.5.2",
     "angular-material": "^1.0.7",
-    "weather-icons": "^2.0.10",
-    "angular-weather-directive": "https://github.com/shusain/angular-sh-weather.git#^0.0.2",
     "moment": "^2.12.0"
   },
   "devDependencies": {

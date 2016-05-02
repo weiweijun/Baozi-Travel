@@ -1,0 +1,23 @@
+<div layout-align="center center">
+    <md-card ng-model="firstday">
+      <weather-google-icon cloudiness="{{firstday.clouds}}">
+      </weather-google-icon>
+      <md-card-title>
+        <md-card-title-text>
+          <div class="md-title"
+              ng-bind-html="0 | daysInTheFuture"></div>
+          <span ng-bind-html="firstday.temp.current | temp:0:units"
+                class="md-headline"></span>
+          <span ng-bind-html="firstday.temp.min | temp:0:units"
+                class="md-subhead"></span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content ng-repeat="weather in $parent.$parent.forcast.list | limitTo: $index != 1">
+        <div layout="row">
+          <div layout="column">
+            fsdfdsfasd
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>
+</div>

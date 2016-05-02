@@ -16,8 +16,7 @@ angular
     'ngSanitize',
     'ngRoute',
     'ngMaterial',
-    'ngMessages',
-    "weatherModule"
+    'ngMessages'
   ])
   .config(function ($routeProvider) {
     $routeProvider
