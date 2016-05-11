@@ -8,8 +8,8 @@
  * Controller of the baoziApp
  */
 angular.module('baoziApp')
-  .controller('WeatherCtrl', function () {
-
-  });
+  .controller('WeatherCtrl', ['$scope', '$mdMedia', function ($scope, $mdMedia){
+      $scope.$mdMedia = $mdMedia;
+    }]);
 
 

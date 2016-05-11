@@ -5,7 +5,8 @@
 
 angular
   .module('baoziApp')
-  .controller('NavbarController', function ($scope, $mdMedia, $mdSidenav){
+  .controller('NavbarController', ['$scope', '$mdMedia', '$mdSidenav',
+    function ($scope, $mdMedia, $mdSidenav){
     $scope.$mdMedia = $mdMedia;
     $scope.$mdSidenav = $mdSidenav;
-  });
+  }]);

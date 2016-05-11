@@ -24,5 +24,10 @@ angular
         templateUrl: 'scripts/weather/weather.html',
         controller: 'WeatherCtrl',
         controllerAs: 'weather'
+      })
+      .when('/foodmap', {
+        templateUrl: 'scripts/weather/foodmap.html',
+        controller: 'FoodmapCtrl',
+        controllerAs: 'foodmap'
       });
   });

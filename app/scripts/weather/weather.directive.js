@@ -13,10 +13,10 @@ angular.module('baoziApp')
         }
         service.curWeather[location] = {
           temp : {},
-          clouds: null
+          icon: "undefined"
         };
         $http.get('http://api.openweathermap.org/data/2.5/weather?q='+
-          location + 'units=' + units + '&APPID=b253934bbcdd1b68251e3854cc389ca0')
+          location + '&units=' + units + '&APPID=b253934bbcdd1b68251e3854cc389ca0')
           .success(function (data) {
             if (data){
               if (data.main) {
@@ -24,8 +24,7 @@ angular.module('baoziApp')
                 service.curWeather[location].temp.min = data.main.temp_min;
                 service.curWeather[location].temp.max = data.main.temp_max;
               }
-              service.curWeather[location].clouds =
-                data.clouds ? data.clouds.all : undefined;
+              service.curWeather[location].icon = data.weather[0].icon;
             }
           });
         return service.curWeather[location];
@@ -70,7 +69,7 @@ angular.module('baoziApp')
       }
       var numfilter = $filter('number');
       return numfilter(input, precision) + '&deg;' + unitDisplay;
-    }
+    };
   })
   .filter('temperature', function ($filter) {
     return function (input, precision, units) {
@@ -93,12 +92,17 @@ angular.module('baoziApp')
       return numfilter(input, precision) + '&deg;' + unitDisplay;
     };
   })
-  .filter('daysInTheFuture', function () {
+  .filter('daysNow', function () {
     return function (input) {
       return new moment().add(input, 'days').format('ddd MMM DD');
     };
   })
-  .directive('weatherForecast', function () {
+  .filter('daysInTheFuture', function () {
+    return function (input) {
+      return new moment().add(input, 'days').format('ddd');
+    };
+  })
+  .directive('weatherForecast',function () {
     return {
       scope: {
         location: '@',
@@ -107,7 +111,7 @@ angular.module('baoziApp')
       restrict: 'E',
       replace: true,
       templateUrl: 'scripts/weather/weatherForecast.tpl.html',
-      link: function (scope) {
+      link: function (scope, $mdMedia) {
         scope.units = scope.units || 'metric';
       }
     };
@@ -129,10 +133,6 @@ angular.module('baoziApp')
           scope.units);
         scope.forecast = weatherService.getForecast(scope.location,
           scope.units, '5');
-        setTimeout(function () {
-          //console.log(scope.forecast);
-          console.log(scope.firstday);
-        },2000)
       }
     };
   })
@@ -141,19 +141,13 @@ angular.module('baoziApp')
       restrict: 'E',
       replace: true,
       scope: {
-        cloudiness: '@',
+        icon: '@',
         customSize: '@?'
       },
       link: function (scope) {
         scope.imgUrl = function () {
           var baseUrl = 'images/weathericon/';
-          if (scope.cloudiness < 20){
-            return baseUrl + 'sunny.png';
-          } else if (scope.cloudiness < 90){
-            return baseUrl + 'partly_cloudy.png';
-          } else {
-            return baseUrl + 'cloudy.png';
-          }
+          return baseUrl+ scope.icon+'.png';
         };
       },
       template: '<img style=\"height:{{customSize}}px;width:{{customSize}}px;\" class="md-card-image" ng-src=\"{{imgUrl()}}\">'
