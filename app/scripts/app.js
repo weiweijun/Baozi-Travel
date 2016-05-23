@@ -14,20 +14,38 @@ angular
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'ngRoute',
     'ngMaterial',
-    'ngMessages'
+    'ngMessages',
+    'firebase',
+    'ui.router'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
+  .config(function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/');
+    $stateProvider
+      .state('home', {
+        url: '/',
         templateUrl: 'scripts/weather/weather.html',
-        controller: 'WeatherCtrl',
-        controllerAs: 'weather'
+        controller: 'WeatherCtrl as weather'
       })
-      .when('/foodmap', {
-        templateUrl: 'scripts/weather/foodmap.html',
-        controller: 'FoodmapCtrl',
-        controllerAs: 'foodmap'
+      .state('map', {
+        url: '/map',
+        templateUrl: 'scripts/foodmap/foodmap.html',
+        controller: 'FoodmapCtrl as foodmap'
+      })
+      .state('chat', {
+        url: '/chat',
+        templateUrl: 'scripts/chat/chat.html',
+        controller: 'ChatCtrl as chat'
+    })
+      .state('login', {
+        url: '/login',
+        templateUrl: 'scripts/components/auth/login.html',
+        controller: 'AuthCtrl as auth'
+      })
+      .state('register', {
+        url: '/register',
+        templateUrl: 'scripts/components/auth/register.html',
+        controller: 'AuthCtrl as auth'
       });
+
   });

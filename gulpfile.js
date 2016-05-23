@@ -17,6 +17,7 @@ var yeoman = {
 var paths = {
   scripts: [yeoman.app + '/scripts/**/*.js'],
   styles: [yeoman.app + '/styles/**/*.scss'],
+  template: [yeoman.app + '/template/*tpl.html'],
   html: [yeoman.app + '/scripts/**/*.html'],
   mainStyle: [yeoman.app + '/styles/main.scss'],
   baseStyle: [yeoman.app + '/styles/*.scss'],
@@ -160,12 +161,12 @@ gulp.task('inject', function (cb) {
 });
 // inject bower components
 gulp.task('bower', function () {
-  return gulp.src(yeoman.app+'/index.html')
+  return gulp.src(_.union(paths.template))
     .pipe(wiredep({
       directory: 'app/bower_components',
       ignorePath: '..'
     }))
-  .pipe(gulp.dest(yeoman.app));
+  .pipe(gulp.dest(yeoman.app + '/template'));
 });
 //inject javascript
 gulp.task('inject:js', function(){

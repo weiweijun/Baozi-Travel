@@ -1,19 +1,16 @@
-
-  <div layout="row" flex="" layout-align="center center"
+<div layout="row" flex="" layout-align="center center"
      ng-controller="WeatherCtrl" layout-wrap="">
-    <div layout="column" flex="" layout-padding="" layout-wrap="">
-      <weather-forecast class="text-center" flex=""
-                        location="Sunnyvale, CA" units="metric">
-      </weather-forecast>
-      <weather-forecast class="text-center" flex=""
-                        location="Sunnyvale, CA" units="metric">
-      </weather-forecast>
-    </div>
-    <div ng-if="$mdMedia('gt-md')" flex="">
-      <weather-forecast class="text-center" flex=""
-                        location="Sunnyvale, CA" units="metric">
-      </weather-forecast>
-    </div>
+  <div layout="column" flex="" layout-padding="" layout-wrap="">
+    <weather-forecast class="text-center" flex=""
+                      location="Sunnyvale, CA" units="metric">
+    </weather-forecast>
+    <weather-forecast class="text-center" flex=""
+                      location="Sunnyvale, CA" units="metric">
+    </weather-forecast>
   </div>
-<!--</md-content>-->
-
+  <div layout="column" flex="" layout-padding="" layout-wrap="">
+    <weather-forecast class="text-center" flex=""
+                      location="Sunnyvale, CA" units="metric">
+    </weather-forecast>
+  </div>
+</div>

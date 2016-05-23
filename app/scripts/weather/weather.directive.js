@@ -111,7 +111,7 @@ angular.module('baoziApp')
       restrict: 'E',
       replace: true,
       templateUrl: 'scripts/weather/weatherForecast.tpl.html',
-      link: function (scope, $mdMedia) {
+      link: function (scope) {
         scope.units = scope.units || 'metric';
       }
     };

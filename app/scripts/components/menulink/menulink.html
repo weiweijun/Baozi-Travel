@@ -1,0 +1,13 @@
+<li ng-repeat="section in menu" is-active-link="">
+  <md-button ui-sref="{{section.link}}" style="width:
+  100%;margin: 0;padding:
+16px 40px">
+    <i ng-class="section.awesome_icon"
+             class="material-icons mdl-color-text--blue-grey-400"
+             style="margin-right: 32px">
+    </i>
+    <span class="mdl-color-text--blue-grey-400">{{section
+      .name}}</span>
+  </md-button>
+</li>
+
