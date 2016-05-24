@@ -27,25 +27,32 @@ angular
         templateUrl: 'scripts/weather/weather.html',
         controller: 'WeatherCtrl as weather'
       })
-      .state('map', {
-        url: '/map',
-        templateUrl: 'scripts/foodmap/foodmap.html',
-        controller: 'FoodmapCtrl as foodmap'
+      .state('panel', {
+        abstract: true,
+        templateUrl: 'scripts/panel/index.html',
+        controller: 'PanelCtrl as panel'
       })
       .state('chat', {
         url: '/chat',
-        templateUrl: 'scripts/chat/chat.html',
-        controller: 'ChatCtrl as chat'
+        templateUrl: 'scripts/panel/chat/chat.html',
+        controller: 'PanelCtrl as panel',
+        parent: 'panel'
     })
-      .state('login', {
-        url: '/login',
-        templateUrl: 'scripts/components/auth/login.html',
-        controller: 'AuthCtrl as auth'
-      })
-      .state('register', {
-        url: '/register',
-        templateUrl: 'scripts/components/auth/register.html',
-        controller: 'AuthCtrl as auth'
-      });
+    .state('blog', {
+      url: '/blog',
+      templateUrl: 'scripts/panel/chat/chat.html',
+      controller: 'PanelCtrl as panel',
+      parent: 'panel'
+    });
+      //.state('login', {
+      //  url: '/login',
+      //  templateUrl: 'scripts/components/auth/login.html',
+      //  controller: 'AuthCtrl as auth'
+      //})
+      //.state('register', {
+      //  url: '/register',
+      //  templateUrl: 'scripts/components/auth/register.html',
+      //  controller: 'AuthCtrl as auth'
+      //});
 
   });

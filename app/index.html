@@ -58,16 +58,8 @@
   <!-- endbuild -->
 </head>
 <body ng-app="baoziApp">
+<ui-view></ui-view>
 
-<div layout="row" class="bao-sidenav">
-  <side-nav></side-nav>
-  <main layout="column" class="bao-navigation">
-    <md-content flex="">
-      <nav-bar></nav-bar>
-      <div ui-view=""></div>
-  </main>
-  <!--<main ng-view="" layout="column" class="bao-navigation"></main>-->
-</div>
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <script>
   !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
@@ -101,8 +93,6 @@
 <!-- build:js(app) scripts/app.js -->
 <script src="scripts/app.js"></script>
 <!-- injector:js -->
-<script src="scripts/chat/chat.controller.js"></script>
-<script src="scripts/chat/chat.directive.js"></script>
 <script src="scripts/components/auth/auth.controller.js"></script>
 <script src="scripts/components/auth/auth.directive.js"></script>
 <script src="scripts/components/footer/footer.controller.js"></script>
@@ -113,18 +103,15 @@
 <script src="scripts/components/navbar/navbar.directive.js"></script>
 <script src="scripts/components/sidenav/sidenav.controller.js"></script>
 <script src="scripts/components/sidenav/sidenav.directive.js"></script>
-<script src="scripts/foodmap/foodmap.controller.js"></script>
-<script src="scripts/foodmap/foodmap.directive.js"></script>
+<script src="scripts/panel/chat/chat.controller.js"></script>
+<script src="scripts/panel/chat/chat.directive.js"></script>
+<script src="scripts/panel/panel.controller.js"></script>
 <script src="scripts/weather/weather.controller.js"></script>
 <script src="scripts/weather/weather.directive.js"></script>
 <!-- endinjector -->
 <!-- endbuild -->
 </body>
 </html>
-
-ather.directive.js"></script>
-<!-- endinjector -->
-<!-- endbuild -->
 </body>
 </html>
 

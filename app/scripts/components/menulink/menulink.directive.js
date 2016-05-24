@@ -45,17 +45,18 @@ angular.module('baoziApp')
       }
     };
   }])
-  .directive('isActiveLink', ['$location', function ($location) {
+  .directive('isActiveLink', ['$state', function ($state) {
   return {
     restrict: 'A', //use as attribute
     replace: false,
     link: function (scope, elem) {
       //after the route has changed
-      scope.$on("$routeChangeSuccess", function () {
-        console.log($location.path());
-        var hrefs = ['/#' + $location.path(),
-          '#' + $location.path(), //html5: false
-          $location.path()]; //html5: true
+      scope.$on("$stateChangeSuccess", function () {
+        //console.log($state);
+        var hrefs = ['#/' + $state.current.name,
+          '#' + $state.current.name, //html5: false
+          $state.current.name]; //html5: true
+        //console.log(hrefs);
         angular.forEach(elem.find('a'), function (a) {
           a = angular.element(a);
           var kids = a.children();
