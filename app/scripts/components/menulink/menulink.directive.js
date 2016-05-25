@@ -50,9 +50,7 @@ angular.module('baoziApp')
     restrict: 'A', //use as attribute
     replace: false,
     link: function (scope, elem) {
-      //after the route has changed
-      scope.$on("$stateChangeSuccess", function () {
-        //console.log($state);
+      var isActive = function () {
         var hrefs = ['#/' + $state.current.name,
           '#' + $state.current.name, //html5: false
           $state.current.name]; //html5: true
@@ -66,7 +64,11 @@ angular.module('baoziApp')
             kids.removeClass('mdl-color-text--green-400').addClass('mdl-color-text--blue-grey-400');
           }
         });
-      });
+      };
+      scope.init = isActive;
+      scope.init();
+      //after the route has changed
+      scope.$on("$stateChangeSuccess", isActive);
     }
   };
   }]);

@@ -43,16 +43,16 @@ angular
       templateUrl: 'scripts/panel/chat/chat.html',
       controller: 'PanelCtrl as panel',
       parent: 'panel'
+    })
+    .state('login', {
+      url: '/login',
+      templateUrl: 'scripts/components/auth/login.html',
+      controller: 'AuthCtrl as auth'
+    })
+    .state('register', {
+      url: '/register',
+      templateUrl: 'scripts/components/auth/register.html',
+      controller: 'AuthCtrl as auth'
     });
-      //.state('login', {
-      //  url: '/login',
-      //  templateUrl: 'scripts/components/auth/login.html',
-      //  controller: 'AuthCtrl as auth'
-      //})
-      //.state('register', {
-      //  url: '/register',
-      //  templateUrl: 'scripts/components/auth/register.html',
-      //  controller: 'AuthCtrl as auth'
-      //});
 
   });
