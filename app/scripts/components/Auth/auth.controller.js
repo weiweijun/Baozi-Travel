@@ -2,7 +2,7 @@
  * Created by tianhengzhou on 5/19/16.
  */
 angular.module('baoziApp')
-  .controller('AuthCtrl', function (Auth, $scope, $state) {
+  .controller('AuthCtrl', ['$state', 'Auth',function ($state, Auth) {
     var authCtrl = this;
     authCtrl.user = {
       email: '',
@@ -23,7 +23,7 @@ angular.module('baoziApp')
       })
     };
 
-  })
+  }])
   .factory('Auth', function ($firebaseAuth, FirebaseUrl) {
     var ref = new Firebase(FirebaseUrl);
     var auth = $firebaseAuth(ref);
