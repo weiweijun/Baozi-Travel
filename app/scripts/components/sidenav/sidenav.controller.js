@@ -5,7 +5,8 @@
 
 angular
   .module('baoziApp')
-  .controller('SidenavController', function ($scope, $timeout, $mdSidenav, $log) {
+  .controller('SidenavController',['$scope', '$timeout', '$mdSidenav', '$log',
+    function ($scope, $timeout, $mdSidenav, $log) {
     $scope.toggleLeft = buildDelayedToggler('left');
     $scope.toggleRight = buildToggler('right');
     $scope.isOpenRight = function(){
@@ -53,7 +54,7 @@ angular
           });
       }
     }
-  })
+  }])
   .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.close = function () {
       $mdSidenav('left').close()

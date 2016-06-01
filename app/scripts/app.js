@@ -19,6 +19,26 @@ angular
     'firebase',
     'ui.router'
   ])
+  .constant('FirebaseUrl', 'https://popping-heat-9212.firebaseio.com')
+  .factory('Auth', function ($firebaseAuth, $firebaseObject,  FirebaseUrl) {
+    var ref = new Firebase(FirebaseUrl);
+    var auth = $firebaseAuth(ref);
+    return auth;
+  })
+  .factory('Users', function ($firebaseArray, $firebaseObject, FirebaseUrl) {
+    var usersRef = new Firebase(FirebaseUrl+'users');
+    var users = $firebaseArray(usersRef);
+    var Users = {
+      getProfile: function (uid) {
+        return $firebaseObject(usersRef.child(uid));
+      },
+      getDisplayName: function (uid) {
+        return users.$getRecord(uid).displayName;
+      },
+      all: users
+    };
+    return Users;
+  })
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
@@ -47,12 +67,29 @@ angular
     .state('login', {
       url: '/login',
       templateUrl: 'scripts/components/auth/login.html',
-      controller: 'AuthCtrl as auth'
+      controller: 'AuthCtrl as auth',
+      resolve: {
+        requireNoAuth: function ($state, Auth) {
+          return Auth.$requireAuth().then(function (auth) {
+            $state.go('panel');
+          }, function (error) {
+            return;
+          });
+        }
+      }
     })
     .state('register', {
       url: '/register',
       templateUrl: 'scripts/components/auth/register.html',
-      controller: 'AuthCtrl as auth'
+      controller: 'AuthCtrl as auth',
+      resolve: {
+        requireNoAuth: function ($state, Auth) {
+          return Auth.$requireAuth().then(function (auth) {
+            $state.go('panel');
+          }, function (error) {
+            return;
+          });
+        }
+      }
     });
-
   });
