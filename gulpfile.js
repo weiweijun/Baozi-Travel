@@ -161,12 +161,12 @@ gulp.task('inject', function (cb) {
 });
 // inject bower components
 gulp.task('bower', function () {
-  return gulp.src(_.union(paths.template))
+  return gulp.src(yeoman.app+'/index.html')
     .pipe(wiredep({
       directory: 'app/bower_components',
       ignorePath: '..'
     }))
-  .pipe(gulp.dest(yeoman.app + '/template'));
+  .pipe(gulp.dest(yeoman.app));
 });
 //inject javascript
 gulp.task('inject:js', function(){

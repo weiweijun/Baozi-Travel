@@ -16,29 +16,11 @@ angular
     'ngSanitize',
     'ngMaterial',
     'ngMessages',
+    'angular-md5',
     'firebase',
     'ui.router'
   ])
   .constant('FirebaseUrl', 'https://popping-heat-9212.firebaseio.com')
-  .factory('Auth', function ($firebaseAuth, $firebaseObject,  FirebaseUrl) {
-    var ref = new Firebase(FirebaseUrl);
-    var auth = $firebaseAuth(ref);
-    return auth;
-  })
-  .factory('Users', function ($firebaseArray, $firebaseObject, FirebaseUrl) {
-    var usersRef = new Firebase(FirebaseUrl+'users');
-    var users = $firebaseArray(usersRef);
-    var Users = {
-      getProfile: function (uid) {
-        return $firebaseObject(usersRef.child(uid));
-      },
-      getDisplayName: function (uid) {
-        return users.$getRecord(uid).displayName;
-      },
-      all: users
-    };
-    return Users;
-  })
   .config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
@@ -73,7 +55,7 @@ angular
           return Auth.$requireAuth().then(function (auth) {
             $state.go('panel');
           }, function (error) {
-            return;
+            console.error(error);
           });
         }
       }
@@ -87,7 +69,26 @@ angular
           return Auth.$requireAuth().then(function (auth) {
             $state.go('panel');
           }, function (error) {
-            return;
+            console.error(error);
+          });
+        }
+      }
+    })
+    .state('profile', {
+      url: '/profile',
+      resolve: {
+        auth: function ($state, Users, Auth) {
+          // $requireAuth() resolve a promise successfully when a user is
+          // authenticated and reject otherwise. promise.catch will catch the
+          // rejection. catch is a shorthand for us if we don't want to
+          // process the success handler.
+          return Auth.$requireAuth().catch(function () {
+            $state.go('home');
+          });
+        },
+        profile: function (Users, Auth) {
+          return Auth.$requireAuth().then(function (auth) {
+            return Users.getProfile(auth.uid).$loaded();
           });
         }
       }
