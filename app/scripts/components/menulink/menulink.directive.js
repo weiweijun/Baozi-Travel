@@ -5,6 +5,12 @@ angular.module('baoziApp')
     var sections = [];
     sections.push(
       {
+        name: 'My Profile',
+        link: 'profile',
+        icon: '&#xE55B;',
+        awesome_icon: 'fa fa-user'
+      },
+      {
         name: 'Food Map',
         link: 'map',
         icon: '&#xE55B;',
