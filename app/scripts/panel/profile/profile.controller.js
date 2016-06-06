@@ -7,7 +7,8 @@ angular.module('baoziApp')
     function ($state, md5, auth, profile) {
       var profileCtrl = this;
       profileCtrl.profile = profile;
-      profile.updateProfile = function () {
+      profileCtrl.updateProfile = function () {
+        console.log(profileCtrl.profile);
         profileCtrl.profile.emailHash = md5.createHash(auth.password.email);
         profileCtrl.profile.$save();
       };

@@ -4,12 +4,21 @@
 "use strict";
 
 angular.module('baoziApp')
-  .directive('loginCard', function () {
+  .directive('userAuth', function () {
     return {
-      templateUrl: 'scripts/components/auth/login.html',
+      templateUrl: 'scripts/components/auth/userauth.html',
       restrict: 'E',
-      controller: 'ProfileCtrl',
-      controllerAs: 'profile',
-      replace: true
+      controller: 'AuthCtrl',
+      controllerAs: 'authCtrl',
+      replace: true,
+      link: function (scope) {
+        scope.isLogin = true;
+        scope.toLoginPage = function () {
+          scope.isLogin = true;
+        };
+        scope.toRegisterPage = function () {
+          scope.isLogin = false;
+        }
+      }
     };
   });

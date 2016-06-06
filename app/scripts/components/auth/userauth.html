@@ -1,4 +1,4 @@
-<form ng-submit="authCtrl.register()">
+<form ng-submit="isLogin ? authCtrl.login() : authCtrl.register()">
   <md-card>
     <md-card-header>
       <md-card-avatar>
@@ -11,7 +11,7 @@
     </md-card-header>
     <md-card-title>
       <md-card-title-text>
-        <span class="md-headline">Register</span>
+        <span class="md-headline">{{isLogin ? 'Login' : 'Register'}}</span>
       </md-card-title-text>
     </md-card-title>
     <md-card-content>
@@ -28,12 +28,15 @@
                ng-model="authCtrl.user.password"/>
       </md-input-container>
       <div layout="row" layout-align="center center" style="padding-top:20px;">
-        <md-button type="submit"
-                   class="md-raised md-primary">Register
+        <md-button aria-label="{{isLogin ? 'Login' : 'Register'}}" type="submit" class="md-raised md-primary">
+          {{isLogin ? 'Login' : 'Register'}}
+        </md-button>
+        <md-button ng-click="!isLogin ? toLoginPage() : toRegisterPage()"
+                   md-no-ink="" class="md-primary">
+          {{!isLogin ? 'Login' : 'Register'}}
         </md-button>
         <div flex="flex"></div>
       </div>
     </md-card-content>
   </md-card>
 </form>
-
