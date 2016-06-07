@@ -16,7 +16,7 @@ angular.module('baoziApp')
       };
       authCtrl.login = function () {
         Auth.$authWithPassword(authCtrl.user).then(function (auth) {
-          $state.go('chat');
+          $state.go('profile');
 
         }, function (err) {
           authCtrl.error = err;
