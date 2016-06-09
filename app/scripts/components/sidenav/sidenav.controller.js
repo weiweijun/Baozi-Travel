@@ -5,8 +5,10 @@
 
 angular
   .module('baoziApp')
-  .controller('SidenavController',['$scope', '$timeout', '$mdSidenav', '$log', 'Users', 'Auth',
-    function ($scope, $timeout, $mdSidenav, $log, Users, Auth) {
+  .controller('SidenavController',['$scope', '$state', '$timeout', '$mdSidenav',
+    '$log', 'Users', 'Auth', function ($scope, $state, $timeout, $mdSidenav,
+                                       $log, Users, Auth) {
+      var sidenavController = this;
       var profile = function (Users, Auth) {
         return Auth.$requireAuth().then(function (auth) {
           return Users.getProfile(auth.uid).$loaded();
@@ -14,9 +16,14 @@ angular
       }(Users, Auth);
       profile.then(function (data) {
         $scope.emailHash = data.emailHash;
+        $scope.name = data.displayName;
       }, function (error) {
         console.log(error);
       });
+      $scope.logout = function () {
+        Auth.$unauth();
+        $state.go('home');
+      };
     $scope.toggleLeft = buildDelayedToggler('left');
     $scope.toggleRight = buildToggler('right');
     $scope.isOpenRight = function(){

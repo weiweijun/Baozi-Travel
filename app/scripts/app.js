@@ -47,7 +47,27 @@ angular
         url: '/chat',
         templateUrl: 'scripts/panel/chat/chat.html',
         controller: 'PanelCtrl as panel',
-        parent: 'panel'
+        parent: 'panel',
+        resolve:{
+          //channels: function (Channels) {
+          //  return Channels.$loaded();
+          //},
+          profile: function ($state, Auth, Users) {
+            return Auth.$requireAuth().then(function (auth) {
+              return Users.getProfile(auth.uid).$loaded().then(function (profile) {
+                if (profile.displayName){
+                  return profile;
+                }else{
+                  $state.go('blog');
+                }
+              });
+            }, function (error) {
+              $state.go('home');
+            });
+          }
+        }
+
+
       })
       .state('blog', {
         url: '/blog',

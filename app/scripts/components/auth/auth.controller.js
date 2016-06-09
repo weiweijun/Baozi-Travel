@@ -31,6 +31,6 @@ angular.module('baoziApp')
          authCtrl.login();
         }).catch(function (error) {
           authCtrl.error = error;
-        })
+        });
       };
   }]);
