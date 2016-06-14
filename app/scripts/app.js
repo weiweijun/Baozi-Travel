@@ -31,7 +31,7 @@ angular
         resolve: {
           requireNoAuth: function ($state, Auth) {
             return Auth.$requireAuth().then(function (auth) {
-              $state.go('profile');
+              $state.go('panel.profile');
             }, function (error) {
               console.log(error);
             });
@@ -41,24 +41,35 @@ angular
       .state('panel', {
         abstract: true,
         templateUrl: 'scripts/panel/index.html',
-        controller: 'PanelCtrl as panel'
+        controller: 'PanelCtrl as panel',
+        resolve:{
+          auth: function ($state, Users, Auth) {
+            // $requireAuth() resolve a promise successfully when a user is
+            // authenticated and reject otherwise. promise.catch will catch the
+            // rejection. catch is a shorthand for us if we don't want to
+            // process the success handler.
+            return Auth.$requireAuth().catch(function () {
+              $state.go('home');
+              console.log('No User');
+            });
+          }
+        }
       })
-      .state('chat', {
+      .state('panel.chat', {
         url: '/chat',
         templateUrl: 'scripts/panel/chat/chat.html',
-        controller: 'PanelCtrl as panel',
-        parent: 'panel',
+        controller: 'ChatCtrl as chatCtrl',
         resolve:{
-          //channels: function (Channels) {
-          //  return Channels.$loaded();
-          //},
+          channels: function (Channels) {
+            return Channels.$loaded();
+          },
           profile: function ($state, Auth, Users) {
             return Auth.$requireAuth().then(function (auth) {
               return Users.getProfile(auth.uid).$loaded().then(function (profile) {
                 if (profile.displayName){
                   return profile;
                 }else{
-                  $state.go('blog');
+                  $state.go('panel.profile');
                 }
               });
             }, function (error) {
@@ -66,16 +77,47 @@ angular
             });
           }
         }
-
-
       })
-      .state('blog', {
+      .state('panel.chat.create', {
+        url: '/create',
+        templateUrl: 'scripts/panel/chat/create.html',
+        controller: 'ChatCtrl as chatCtrl'
+      })
+      .state('panel.chat.messages', {
+        url: '/{channelId}/messages',
+        templateUrl: 'scripts/panel/chat/messages.html',
+        controller: 'MessageCtrl as messageCtrl',
+        resolve: {
+          messages: function ($stateParams, Messages) {
+            return Messages.forChannel($stateParams.channelId).$loaded();
+          },
+          channelName: function ($stateParams, channels) {
+            return '#' + channels.$getRecord($stateParams.channelId).name;
+          }
+        }
+      })
+      .state('panel.chat.direct', {
+        url: '/{uid}/messages/direct',
+        templateUrl: 'scripts/panel/chat/messages.html',
+        controller: 'MessageCtrl as messageCtrl',
+        resolve: {
+          messages: function ($stateParams, Messages, profile) {
+            return Messages.forUsers($stateParams.uid, profile.$id).$loaded();
+          },
+          channelName: function ($stateParams, Users) {
+            return Users.all.$loaded().then(function () {
+              return '@' + Users.getDisplayName($stateParams.uid);
+            });
+          }
+        }
+      })
+      .state('panel.blog', {
         url: '/blog',
-        templateUrl: 'scripts/panel/chat/chat.html',
+        templateUrl: 'scripts/panel/chat/blog.html',
         controller: 'PanelCtrl as panel',
         parent: 'panel'
       })
-      .state('profile', {
+      .state('panel.profile', {
         url: '/profile',
         controller: 'ProfileCtrl as profileCtrl',
         templateUrl: 'scripts/panel/profile/profile.html',

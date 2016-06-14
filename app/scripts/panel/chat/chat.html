@@ -1,3 +1,46 @@
-<div ng-controller="ChatCtrl">
-  dfsdjkfksdjhfkjsdahfkjsdhfkj
+<div>
+  <div class="main">
+    <div class="sidebar">
+
+      <div class="slack-name">
+        <h2>FireSlack</h2>
+      </div>
+
+      <div class="channel-list">
+        <div class="list-head">Channels</div>
+        <div class="channel" ng-repeat="channel in chatCtrl.channels">
+          <a ui-sref="panel.chat.messages({channelId: channel.$id})"
+             ui-sref-active="selected"># {{ channel.name }}</a>
+        </div>
+      </div>
+      <div class="channel create">
+        <a ui-sref="panel.chat.create"> + create channel</a>
+      </div>
+      <div class="list-head">Direct Messages</div>
+      <div class="channel" ng-repeat="user in chatCtrl.users">
+        <a ng-if="user.$id !== channelsCtrl.profile.$id"
+           ui-sref="panel.chat.direct({uid: user.$id})"
+           ui-sref-active="selected">
+          {{ user.displayName }}
+        </a>
+      </div>
+      <div class="my-info">
+        <img class="user-pic" ng-src="{{ chatCtrl.getGravatar(chatCtrl.profile.$id) }}" />
+        <div class="user-info">
+          <div class="user-name">
+            {{ chatCtrl.profile.displayName }}
+          </div>
+
+          <div class="options">
+            <a ui-sref="panel.profile">edit profile</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <ui-view></ui-view>
 </div>
+
+
+

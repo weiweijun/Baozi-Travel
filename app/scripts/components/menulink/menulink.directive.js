@@ -6,31 +6,31 @@ angular.module('baoziApp')
     sections.push(
       {
         name: 'My Profile',
-        link: 'profile',
+        link: 'panel.profile',
         icon: '&#xE55B;',
         awesome_icon: 'fa fa-user'
       },
       {
         name: 'Food Map',
-        link: 'map',
+        link: 'panel.map',
         icon: '&#xE55B;',
         awesome_icon: 'fa fa-cutlery'
       },
       {
         name: 'Wine Shop',
-        link: 'shop',
+        link: 'panel.shop',
         icon: '&#xE8CB;',
         awesome_icon: 'fa fa-glass'
       },
       {
         name: 'Travel Blog',
-        link: 'blog',
+        link: 'panel.blog',
         icon: '&#xE87A;',
         awesome_icon: 'fa fa-suitcase'
       },
       {
         name: 'Happy Chat',
-        link: 'chat',
+        link: 'panel.chat',
         icon: '&#xE0B7;',
         awesome_icon: 'fa fa-comments'
       });
@@ -57,9 +57,9 @@ angular.module('baoziApp')
     replace: false,
     link: function (scope, elem) {
       var isActive = function () {
-        var hrefs = ['#/' + $state.current.name,
-          '#' + $state.current.name, //html5: false
-          $state.current.name]; //html5: true
+        var hrefs = ['#/' + $state.current.name.split('.')[1],
+          '#' + $state.current.name.split('.')[1], //html5: false
+          $state.current.name.split('.')[1]]; //html5: true
         //console.log(hrefs);
         angular.forEach(elem.find('a'), function (a) {
           a = angular.element(a);
