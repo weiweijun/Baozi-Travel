@@ -3,11 +3,14 @@
  */
 "use strict";
 angular.module('baoziApp')
-  .controller('MessageCtrl', function (profile, channelName, messages) {
+  .controller('MessageCtrl', function ($mdMedia, profile, channelName,
+                                       messages) {
     var messageCtrl = this;
+    messageCtrl.$mdMedia = $mdMedia;
     messageCtrl.messages = messages;
     messageCtrl.channelName = channelName;
     messageCtrl.message = '';
+    messageCtrl.profile = profile;
     messageCtrl.sendMessage = function () {
       if(messageCtrl.message.length > 0){
         messageCtrl.messages.$add({
@@ -18,5 +21,6 @@ angular.module('baoziApp')
           messageCtrl.message = '';
         });
       }
+      
     };
   });

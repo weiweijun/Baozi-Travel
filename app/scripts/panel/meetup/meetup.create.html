@@ -1,0 +1,29 @@
+<div layout="column" class="md-inline-form" layout-padding="">
+    <form id="meetupForm">
+        <md-input-container class="md-block">
+            <label for="meetupName">Meetup Name</label>
+            <input id="meetupName" ng-model="meetup.name"
+                   placeholder="Meetup Group Name" md-maxlength="30">
+            <div ng-messages="meetup.name.$error">
+                <div ng-message="required">The name is required.</div>
+                <div ng-message="md-maxlength">The name has to be less
+                    than 30 characters long.</div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label for="meetupHost">Hoster</label>
+            <input id="meetupHost" ng-model="meetup.host">
+            <div ng-messages="meetup.host.$error">
+                <div ng-message="required">The host name is required.</div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label for="meetupLocation">Location</label>
+            <input id="meetupLocation" ng-model="meetup.location" googleplace
+                   placeholder="Enter a Location">
+            <div ng-messages="meetup.location.$error">
+                <div ng-message="required">The location is required.</div>
+            </div>
+        </md-input-container>
+    </form>
+</div>

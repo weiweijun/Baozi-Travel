@@ -17,10 +17,10 @@ angular.module('baoziApp')
         awesome_icon: 'fa fa-cutlery'
       },
       {
-        name: 'Wine Shop',
-        link: 'panel.shop',
+        name: 'Meet Up',
+        link: 'panel.meetup',
         icon: '&#xE8CB;',
-        awesome_icon: 'fa fa-glass'
+        awesome_icon: 'fa fa-calendar'
       },
       {
         name: 'Travel Blog',
@@ -36,7 +36,7 @@ angular.module('baoziApp')
       });
     return sections;
   })
-  .directive('menuLink',['menu', function (menu) {
+  .directive('menuLink', function (menu) {
     return {
       scope:{
         section: '='
@@ -50,8 +50,8 @@ angular.module('baoziApp')
         scope.menu = menu;
       }
     };
-  }])
-  .directive('isActiveLink', ['$state', function ($state) {
+  })
+  .directive('isActiveLink', function ($state) {
   return {
     restrict: 'A', //use as attribute
     replace: false,
@@ -77,6 +77,6 @@ angular.module('baoziApp')
       scope.$on("$stateChangeSuccess", isActive);
     }
   };
-  }]);
+  });
 
 

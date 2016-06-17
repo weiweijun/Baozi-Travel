@@ -8,10 +8,11 @@
  * Controller of the weather forecast module
  */
 angular.module('baoziApp')
-  .controller('ChatCtrl', ['$scope','$state', 'Auth', 'Users', 'channels',
-    'profile', function($scope, $state, Auth, Users, channels, profile){
+  .controller('ChatCtrl', function($scope, $state, $mdMedia, Auth, Users, 
+                                   channels, profile){
       Users.setOnline(profile.$id);
       var chatCtrl = this;
+      chatCtrl.direction = false;
       chatCtrl.profile = profile;
       chatCtrl.channels = channels;
       chatCtrl.getDisplayName = Users.getDisplayName;
@@ -27,7 +28,10 @@ angular.module('baoziApp')
           };
         });
       };
+      chatCtrl.toggle = function () {
+        chatCtrl.direction = !chatCtrl.direction;
+      };
       chatCtrl.users = Users.all;
-  }]);
+  });
 
 

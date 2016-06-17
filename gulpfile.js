@@ -4,6 +4,7 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var openURL = require('open');
+var ngAnnotate = require('gulp-ng-annotate');
 var lazypipe = require('lazypipe');
 var rimraf = require('rimraf');
 var wiredep = require('wiredep').stream;
@@ -65,6 +66,7 @@ gulp.task('styles', function () {
 });
 gulp.task('scripts', function () {
   return gulp.src(paths.scripts)
+    .pipe(ngAnnotate())
     .pipe(gulp.dest('.tmp/scripts'))
 });
 gulp.task('scripts:html', function () {
@@ -119,6 +121,7 @@ gulp.task('watch', function () {
 
   $.watch(paths.scripts)
     .pipe($.plumber())
+    .pipe(ngAnnotate())
     .pipe(lintScripts())
     .pipe(gulp.dest('.tmp/scripts'))
     .pipe($.connect.reload());

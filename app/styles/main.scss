@@ -57,3 +57,26 @@ html, body {
   border: none;
   outline: none;
 }
+.online {
+  border: solid 4px #66bb6a
+}
+.offline{
+  border: solid 4px grey;
+}
+.message_lg{
+  width: 90%;
+  height: 600px;
+  overflow : auto;
+}
+.message_sm{
+  width: 90%;
+  height: 300px;
+  overflow : auto;
+}
+.rotate_180{
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}

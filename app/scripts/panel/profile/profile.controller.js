@@ -3,8 +3,7 @@
  */
 "use strict";
 angular.module('baoziApp')
-  .controller('ProfileCtrl',['$state', 'md5', 'auth', 'profile',
-    function ($state, md5, auth, profile) {
+  .controller('ProfileCtrl', function ($state, md5, auth, profile) {
       var profileCtrl = this;
       profileCtrl.profile = profile;
       profileCtrl.updateProfile = function () {
@@ -12,4 +11,4 @@ angular.module('baoziApp')
         profileCtrl.profile.emailHash = md5.createHash(auth.password.email);
         profileCtrl.profile.$save();
       };
-  }]);
+  });

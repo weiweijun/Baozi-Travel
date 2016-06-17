@@ -4,6 +4,6 @@
 "use strict";
 
 angular.module('baoziApp')
-  .controller('PanelCtrl', ['$scope', '$mdMedia', function ($scope, $mdMedia){
+  .controller('PanelCtrl', function ($scope, $mdMedia){
     $scope.$mdMedia = $mdMedia;
-  }]);
+  });
