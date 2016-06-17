@@ -17,14 +17,17 @@ angular
       profile.then(function (data) {
         $scope.emailHash = data.emailHash;
         $scope.name = data.displayName;
+        return data;
       }, function (error) {
         console.log(error);
       });
       $scope.logout = function () {
-        profile.online = null;
-        profile.$save().then(function () {
+        profile.then(function (data) {
+          data.online = null;
+          data.$save().then(function () {
             Auth.$unauth();
             $state.go('home');
+          })
         });
       };
     $scope.toggleLeft = buildDelayedToggler('left');
