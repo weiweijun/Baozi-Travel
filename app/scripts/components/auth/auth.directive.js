@@ -18,7 +18,7 @@ angular.module('baoziApp')
         };
         scope.toRegisterPage = function () {
           scope.isLogin = false;
-        }
+        };
       }
     };
   });

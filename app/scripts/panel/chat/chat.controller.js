@@ -10,6 +10,7 @@
 angular.module('baoziApp')
   .controller('ChatCtrl', ['$scope','$state', 'Auth', 'Users', 'channels',
     'profile', function($scope, $state, Auth, Users, channels, profile){
+      Users.setOnline(profile.$id);
       var chatCtrl = this;
       chatCtrl.profile = profile;
       chatCtrl.channels = channels;

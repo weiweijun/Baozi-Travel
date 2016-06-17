@@ -21,8 +21,11 @@ angular
         console.log(error);
       });
       $scope.logout = function () {
-        Auth.$unauth();
-        $state.go('home');
+        profile.online = null;
+        profile.$save().then(function () {
+            Auth.$unauth();
+            $state.go('home');
+        });
       };
     $scope.toggleLeft = buildDelayedToggler('left');
     $scope.toggleRight = buildToggler('right');

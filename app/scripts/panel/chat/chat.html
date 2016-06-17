@@ -28,6 +28,7 @@
         <img class="user-pic" ng-src="{{ chatCtrl.getGravatar(chatCtrl.profile.$id) }}" />
         <div class="user-info">
           <div class="user-name">
+            <span ng-show="chatCtrl.profile.online">Online</span>
             {{ chatCtrl.profile.displayName }}
           </div>
 

@@ -4,8 +4,9 @@
 "use strict";
 angular.module('baoziApp')
   .factory('Users', function ($firebaseArray, $firebaseObject, FirebaseUrl) {
-    var usersRef = new Firebase(FirebaseUrl+'users');
-    var users = $firebaseArray(usersRef);
+      var usersRef = new Firebase(FirebaseUrl+'users');
+      var connectedRef = $firebaseArray(FirebaseUrl+'.info/connected');
+      var users = $firebaseArray(usersRef);
     return {
       getProfile: function (uid) {
         return $firebaseObject(usersRef.child(uid));
@@ -15,6 +16,17 @@ angular.module('baoziApp')
       },
       getGravatar: function (uid) {
         return 'http://www.gravatar.com/avatar/'+ users.$getRecord(uid).emailHash;
+      },
+      setOnline: function () {
+        var connected = $firebaseObject(connectedRef);
+        var online = $firebaseArray(usersRef.child(uid+'/online'));
+        connected.$watch(function () {
+            if(connected.$value === true){
+                online.$add(true).then(function (connectedRef) {
+                    connectedRef.onDisconnect().remove();
+                });
+            }
+        });
       },
       all: users
     };
