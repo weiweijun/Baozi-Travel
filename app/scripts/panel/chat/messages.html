@@ -7,14 +7,18 @@
           flex="20"
     ></span>
     <img ng-src="{{ chatCtrl.getGravatar(message.uid) }}"
-         class="md-avatar" alt="{{ chatCtrl.getDisplayName(message.uid) }}" />
+         class="md-avatar" alt="{{ chatCtrl.getDisplayName(message.uid) }}"
+         ng-if="messageCtrl.profile.$id !== message.uid" />
     <div class="md-list-item-text">
-      <h3>{{messageCtrl.profile.$id == message.uid ? 'me' :
-        chatCtrl.getDisplayName(message.uid) }}</h3>
-      <p>
+        <p class="bubble"
+         ng-class="{me: messageCtrl.profile.$id === message.uid,
+          you: messageCtrl.profile.$id !== message.uid}">
         {{ message.body }}
-      </p>
+        </p>
     </div>
+    <img ng-src="{{ chatCtrl.getGravatar(message.uid) }}"
+       class="md-avatar" alt="{{ chatCtrl.getDisplayName(message.uid) }}"
+       ng-if="messageCtrl.profile.$id === message.uid" />
   </md-list-item>
   </md-list>
 <form class="message-form" ng-submit="messageCtrl.sendMessage()" layout="row">
