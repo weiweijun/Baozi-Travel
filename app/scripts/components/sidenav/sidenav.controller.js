@@ -5,7 +5,8 @@
 
 angular
   .module('baoziApp')
-  .controller('SidenavController', function ($scope, $state, $timeout, $mdSidenav,
+  .controller('SidenavController',['$scope', '$state', '$timeout', '$mdSidenav',
+    '$log', 'Users', 'Auth', function ($scope, $state, $timeout, $mdSidenav,
                                        $log, Users, Auth) {
       var sidenavController = this;
       var profile = function (Users, Auth) {
@@ -26,15 +27,8 @@ angular
           data.$save().then(function () {
             Auth.$unauth();
             $state.go('home');
-          });
+          })
         });
-      };
-      $scope.close = function () {
-        $mdSidenav('left').close()
-          .then(function () {
-            $log.debug("close LEFT is done");
-          });
-
       };
     $scope.toggleLeft = buildDelayedToggler('left');
     $scope.toggleRight = buildToggler('right');
@@ -81,7 +75,16 @@ angular
           .then(function () {
             $log.debug("toggle " + navID + " is done");
           });
-      };
+      }
     }
+  }])
+  .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+    $scope.close = function () {
+      $mdSidenav('left').close()
+        .then(function () {
+          $log.debug("close LEFT is done");
+        });
+
+    };
   });
 
