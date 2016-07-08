@@ -4,11 +4,6 @@
 "use strict";
 
 angular.module('baoziApp')
-  .controller('MenulinkController', ['$scope', '$mdMedia', '$location',
-    function ($scope, $mdMedia, $location){
+  .controller('MenulinkController', function ($scope, $mdMedia){
       $scope.$mdMedia = $mdMedia;
-      $scope.isActive = function (viewlocation) {
-        return $location.path() === viewlocation;
-      };
-
-    }]);
+    });

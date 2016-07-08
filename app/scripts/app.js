@@ -10,10 +10,6 @@
  */
 angular
   .module('baoziApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngSanitize',
     'ngMaterial',
     'ngMessages',
     'angular-md5',
@@ -107,6 +103,46 @@ angular
           channelName: function ($stateParams, Users) {
             return Users.all.$loaded().then(function () {
               return '@' + Users.getDisplayName($stateParams.uid);
+            });
+          }
+        }
+      })
+      .state('panel.map', {
+        url: '/map',
+        templateUrl: 'scripts/panel/map/map.html',
+        controller: 'MapCtrl as mapCtrl',
+        resolve:{
+          profile: function ($state, Auth, Users) {
+            return Auth.$requireAuth().then(function (auth) {
+              return Users.getProfile(auth.uid).$loaded().then(function (profile) {
+                if (profile.displayName){
+                  return profile;
+                }else{
+                  $state.go('panel.profile');
+                }
+              });
+            }, function (error) {
+              $state.go('home');
+            });
+          }
+        }
+      })
+      .state('panel.meetup', {
+        url: '/meetup',
+        templateUrl: 'scripts/panel/meetup/meetup.html',
+        controller: 'MeetupCtrl as meetupCtrl',
+        resolve:{
+          profile: function ($state, Auth, Users) {
+            return Auth.$requireAuth().then(function (auth) {
+              return Users.getProfile(auth.uid).$loaded().then(function (profile) {
+                if (profile.displayName){
+                  return profile;
+                }else{
+                  $state.go('panel.profile');
+                }
+              });
+            }, function (error) {
+              $state.go('home');
             });
           }
         }

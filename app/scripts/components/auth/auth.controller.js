@@ -4,9 +4,8 @@
 "use strict";
 
 angular.module('baoziApp')
-  .controller('AuthCtrl', ['$state', 'Auth', '$firebaseAuth',
-    '$firebaseObject', 'FirebaseUrl', 'md5',
-    function ($state, Auth, $firebaseAuth, $firebaseObject, FirebaseUrl, md5) {
+  .controller('AuthCtrl', function ($state, Auth, $firebaseAuth,
+                                    $firebaseObject, FirebaseUrl, md5) {
       var authCtrl = this;
       var ref = new Firebase(FirebaseUrl);
       authCtrl.user = {
@@ -33,4 +32,4 @@ angular.module('baoziApp')
           authCtrl.error = error;
         });
       };
-  }]);
+  });
